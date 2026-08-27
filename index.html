@@ -1,176 +1,75 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-theme="minimalism" data-mode="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Kalkulator patungan sederhana untuk membagi tagihan bersama teman." />
-    <title>patungan. — Kalkulator Expense Splitter</title>
+    <meta name="description" content="Kalkulator patungan interaktif untuk membagi tagihan bersama teman." />
+    <title>patungan. — Interactive Expense Splitter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@500;600;700&family=Press+Start+2P&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page-shell">
+    <div class="page-shell" id="top">
       <header class="site-header container">
-        <a class="brand" href="#top" aria-label="patungan. beranda">
-          <span class="brand-mark">p</span>
-          <span>patungan<span class="brand-dot">.</span></span>
-        </a>
-        <nav class="main-nav" aria-label="Navigasi utama">
-          <a href="#calculator">Kalkulator</a>
-          <a href="#how-it-works">Cara kerja</a>
-        </nav>
-        <a class="header-cta" href="#calculator">Mulai hitung <span aria-hidden="true">↗</span></a>
+        <a class="brand" href="#top" aria-label="patungan. beranda"><span class="brand-mark">p</span><span>patungan<span class="brand-dot">.</span></span></a>
+        <nav class="main-nav" aria-label="Navigasi utama"><a href="#calculator">Kalkulator</a><a href="#how-it-works">Cara kerja</a><button class="nav-help" type="button" id="help-button">Bantuan</button></nav>
+        <div class="header-tools">
+          <div class="theme-picker" id="theme-picker">
+            <button class="tool-button theme-trigger" id="theme-trigger" type="button" aria-haspopup="true" aria-expanded="false"><span class="tool-symbol">◈</span><span class="theme-trigger-label">Minimalism</span><span class="chevron">⌄</span></button>
+            <div class="theme-dropdown" id="theme-dropdown" role="menu" aria-label="Pilih tema">
+              <div class="dropdown-head"><span>VISUAL MODE</span><small>12 styles</small></div>
+              <div class="theme-options" id="theme-options"></div>
+              <button class="dropdown-modal-link" id="theme-details-button" type="button">Lihat panduan tema <span>↗</span></button>
+            </div>
+          </div>
+          <button class="tool-button icon-button" id="sound-toggle" type="button" aria-pressed="true" aria-label="Matikan suara"><span class="sound-icon">⌁</span></button>
+          <button class="tool-button mode-toggle" id="mode-toggle" type="button" aria-pressed="false"><span class="mode-icon">☼</span><span class="mode-label">Light</span></button>
+          <a class="header-cta" href="#calculator">Mulai hitung <span aria-hidden="true">↗</span></a>
+        </div>
       </header>
 
-      <main id="top">
+      <main>
         <section class="hero container" aria-labelledby="hero-title">
           <div class="hero-copy">
             <p class="eyebrow"><span class="eyebrow-line"></span> SPLIT SMARTER, TOGETHER</p>
+            <div class="live-pill"><span class="live-dot"></span> Live calculator <span class="live-divider"></span><span id="theme-status">Minimalism mode</span></div>
             <h1 id="hero-title">Satu tagihan,<br /><em>tanpa drama.</em></h1>
             <p class="hero-description">Bagi tagihan makan, ngopi, atau liburan bersama dalam hitungan detik. Semua dapat bagian yang jelas dan adil.</p>
-            <div class="hero-points" aria-label="Keunggulan patungan">
-              <span><i class="point-icon">✓</i> Tanpa login</span>
-              <span><i class="point-icon">✓</i> Hitung real-time</span>
-              <span><i class="point-icon">✓</i> Gratis selamanya</span>
-            </div>
+            <div class="hero-points" aria-label="Keunggulan patungan"><span><i class="point-icon">✓</i> Tanpa login</span><span><i class="point-icon">✓</i> Hitung real-time</span><span><i class="point-icon">✓</i> Gratis selamanya</span></div>
           </div>
-          <div class="hero-art" aria-hidden="true">
-            <div class="art-orbit orbit-one"></div>
-            <div class="art-orbit orbit-two"></div>
-            <div class="art-card">
-              <span class="art-card-label">TOTAL PATUNGAN</span>
-              <strong>Rp 187.500</strong>
-              <div class="art-card-rule"></div>
-              <div class="art-card-foot"><span>4 orang</span><span class="mini-check">✓</span></div>
-            </div>
-            <span class="floating-note note-top">adil &amp; jelas <b>✦</b></span>
-            <span class="floating-note note-bottom">no drama <b>↗</b></span>
-            <div class="spark spark-one">✳</div>
-            <div class="spark spark-two">✦</div>
-          </div>
+          <div class="hero-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-card"><span class="art-card-label">TOTAL PATUNGAN</span><strong id="hero-total">Rp 187.500</strong><div class="art-card-rule"></div><div class="art-card-foot"><span id="hero-people">4 orang</span><span class="mini-check">✓</span></div></div><span class="floating-note note-top">adil &amp; jelas <b>✦</b></span><span class="floating-note note-bottom">no drama <b>↗</b></span><div class="spark spark-one">✳</div><div class="spark spark-two">✦</div></div>
         </section>
 
         <section class="calculator-section container" id="calculator" aria-labelledby="calculator-title">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow"><span class="eyebrow-line"></span> LET'S DO THE MATH</p>
-              <h2 id="calculator-title">Siap berbagi?</h2>
-            </div>
-            <span class="step-badge"><span class="step-number">01</span> Isi detailnya</span>
-          </div>
+          <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> LET'S DO THE MATH</p><h2 id="calculator-title">Siap berbagi?</h2></div><div class="session-timer"><span class="timer-label"><span class="timer-pulse"></span> Sesi aktif</span><button id="timer-toggle" type="button" aria-label="Pause timer"><span id="timer-icon">Ⅱ</span> <strong id="timer-display">00:00</strong></button></div></div>
 
           <div class="calculator-layout">
             <form class="input-card" id="split-form">
-              <div class="card-topline">
-                <div>
-                  <p class="card-kicker">DETAIL TAGIHAN</p>
-                  <h3>Mulai dari sini</h3>
-                </div>
-                <button type="button" class="text-button" id="reset-button">Reset <span aria-hidden="true">↺</span></button>
-              </div>
-
-              <div class="field-group bill-fields">
-                <label for="bill-name">Nama tagihan</label>
-                <input id="bill-name" name="bill-name" type="text" value="Makan malam Jumat" autocomplete="off" />
-                <label for="bill-amount">Total tagihan <span class="label-hint">sebelum biaya tambahan</span></label>
-                <div class="currency-input">
-                  <span>Rp</span>
-                  <input id="bill-amount" name="bill-amount" type="number" min="0" step="1000" value="750000" inputmode="numeric" />
-                </div>
-              </div>
-
+              <div class="card-topline"><div><p class="card-kicker">DETAIL TAGIHAN</p><h3>Mulai dari sini</h3></div><button type="button" class="text-button" id="reset-button">Reset <span aria-hidden="true">↺</span></button></div>
+              <div class="field-group bill-fields"><label for="bill-name">Nama tagihan</label><input id="bill-name" name="bill-name" type="text" value="Makan malam Jumat" autocomplete="off" /><label for="bill-amount">Total tagihan <span class="label-hint">sebelum biaya tambahan</span></label><div class="currency-input"><span>Rp</span><input id="bill-amount" name="bill-amount" type="number" min="0" step="1000" value="750000" inputmode="numeric" /></div></div>
               <div class="divider"></div>
-
-              <div class="participants-heading">
-                <div>
-                  <p class="card-kicker">PESERTA <span id="participant-count">4</span></p>
-                  <h3>Siapa saja yang ikut?</h3>
-                </div>
-                <span class="equal-badge"><span class="equal-icon">=</span> Bagi rata</span>
-              </div>
-              <div class="participant-list" id="participant-list" aria-live="polite"></div>
-              <button type="button" class="add-participant" id="add-participant"><span>+</span> Tambah orang</button>
-
+              <div class="participants-heading"><div><p class="card-kicker">PESERTA <span id="participant-count">4</span></p><h3>Siapa saja yang ikut?</h3></div><span class="equal-badge"><span class="equal-icon">=</span> Bagi rata</span></div>
+              <div class="participant-list" id="participant-list" aria-live="polite"></div><button type="button" class="add-participant" id="add-participant"><span>+</span> Tambah orang</button>
               <div class="divider"></div>
-
-              <div class="adjustments-heading">
-                <div>
-                  <p class="card-kicker">PENYESUAIAN</p>
-                  <h3>Tambahkan jika perlu</h3>
-                </div>
-                <span class="optional-label">Opsional</span>
-              </div>
-              <div class="adjustments-grid">
-                <label class="adjustment-control" for="service-fee">
-                  <span class="adjustment-label"><span class="adjustment-icon fee-icon">%</span> Biaya layanan</span>
-                  <span class="suffix-input"><input id="service-fee" type="number" min="0" max="100" step="0.5" value="5" inputmode="decimal" /><span>%</span></span>
-                </label>
-                <div class="adjustment-control tip-control">
-                  <span class="adjustment-label"><span class="adjustment-icon tip-icon">✦</span> Tip</span>
-                  <div class="tip-options" role="group" aria-label="Pilih persentase tip">
-                    <button type="button" class="tip-option active" data-tip="0">0%</button>
-                    <button type="button" class="tip-option" data-tip="5">5%</button>
-                    <button type="button" class="tip-option" data-tip="10">10%</button>
-                    <button type="button" class="tip-option" data-tip="15">15%</button>
-                  </div>
-                </div>
-              </div>
-              <input type="hidden" id="tip-value" value="0" />
-              <button class="calculate-button" type="submit">Hitung patungan <span aria-hidden="true">→</span></button>
+              <div class="adjustments-heading"><div><p class="card-kicker">PENYESUAIAN</p><h3>Tambahkan jika perlu</h3></div><span class="optional-label">Opsional</span></div>
+              <div class="adjustments-grid"><label class="adjustment-control" for="service-fee"><span class="adjustment-label"><span class="adjustment-icon fee-icon">%</span> Biaya layanan</span><span class="suffix-input"><input id="service-fee" type="number" min="0" max="100" step="0.5" value="5" inputmode="decimal" /><span>%</span></span></label><div class="adjustment-control tip-control"><span class="adjustment-label"><span class="adjustment-icon tip-icon">✦</span> Tip</span><div class="tip-options" role="group" aria-label="Pilih persentase tip"><button type="button" class="tip-option active" data-tip="0">0%</button><button type="button" class="tip-option" data-tip="5">5%</button><button type="button" class="tip-option" data-tip="10">10%</button><button type="button" class="tip-option" data-tip="15">15%</button></div></div></div>
+              <input type="hidden" id="tip-value" value="0" /><button class="calculate-button" type="submit">Hitung patungan <span aria-hidden="true">→</span></button>
             </form>
 
-            <aside class="summary-panel" aria-labelledby="summary-title">
-              <div class="summary-header">
-                <div>
-                  <p class="summary-kicker">RINGKASAN PATUNGAN</p>
-                  <h3 id="summary-title">Semua sudah <span>terbagi.</span></h3>
-                </div>
-                <span class="summary-check">✓</span>
-              </div>
-              <div class="summary-receipt">
-                <div class="receipt-title-row"><span id="summary-bill-name">Makan malam Jumat</span><span class="receipt-status">LUNAS DIBAGI</span></div>
-                <div class="receipt-line"><span>Subtotal</span><strong id="summary-subtotal">Rp 750.000</strong></div>
-                <div class="receipt-line"><span>Biaya layanan <small id="summary-fee-rate">5%</small></span><strong id="summary-fee">Rp 37.500</strong></div>
-                <div class="receipt-line"><span>Tip <small id="summary-tip-rate">0%</small></span><strong id="summary-tip">Rp 0</strong></div>
-                <div class="receipt-total"><span>Total akhir</span><strong id="summary-total">Rp 787.500</strong></div>
-              </div>
-              <div class="per-person-block">
-                <p>PER ORANG</p>
-                <strong id="per-person">Rp 196.875</strong>
-                <span><span id="summary-people">4</span> orang • dibagi rata</span>
-              </div>
-              <div class="settlement-block">
-                <div class="settlement-heading"><span>Rincian peserta</span><span>Jumlah</span></div>
-                <div id="settlement-list"></div>
-              </div>
-              <button type="button" class="copy-button" id="copy-button"><span class="copy-icon">▣</span> Salin ringkasan</button>
-              <p class="summary-note"><span>✦</span> Tinggal kirim ke grup, selesai.</p>
-            </aside>
+            <aside class="summary-panel" aria-labelledby="summary-title"><div class="summary-header"><div><p class="summary-kicker">RINGKASAN PATUNGAN</p><h3 id="summary-title">Semua sudah <span>terbagi.</span></h3></div><span class="summary-check">✓</span></div><div class="summary-receipt"><div class="receipt-title-row"><span id="summary-bill-name">Makan malam Jumat</span><span class="receipt-status">LUNAS DIBAGI</span></div><div class="receipt-line"><span>Subtotal</span><strong id="summary-subtotal">Rp 750.000</strong></div><div class="receipt-line"><span>Biaya layanan <small id="summary-fee-rate">5%</small></span><strong id="summary-fee">Rp 37.500</strong></div><div class="receipt-line"><span>Tip <small id="summary-tip-rate">0%</small></span><strong id="summary-tip">Rp 0</strong></div><div class="receipt-total"><span>Total akhir</span><strong id="summary-total">Rp 787.500</strong></div></div><div class="per-person-block"><p>PER ORANG</p><strong id="per-person">Rp 196.875</strong><span><span id="summary-people">4</span> orang • dibagi rata</span></div><div class="settlement-block"><div class="settlement-heading"><span>Rincian peserta</span><span>Jumlah</span></div><div id="settlement-list"></div></div><button type="button" class="copy-button" id="copy-button"><span class="copy-icon">▣</span> Salin ringkasan</button><p class="summary-note"><span>✦</span> Tinggal kirim ke grup, selesai.</p></aside>
           </div>
         </section>
 
-        <section class="how-section container" id="how-it-works" aria-labelledby="how-title">
-          <div class="how-intro">
-            <p class="eyebrow"><span class="eyebrow-line"></span> SIMPLE BY DESIGN</p>
-            <h2 id="how-title">Patungan yang<br /><em>nggak ribet.</em></h2>
-          </div>
-          <div class="how-steps">
-            <article class="how-step"><span class="step-index">01</span><div><h3>Isi tagihan</h3><p>Masukkan nominal dan detail bill-mu.</p></div></article>
-            <article class="how-step"><span class="step-index">02</span><div><h3>Tambah teman</h3><p>Catat semua yang ikut makan atau jalan.</p></div></article>
-            <article class="how-step"><span class="step-index">03</span><div><h3>Bagikan hasil</h3><p>Salin ringkasan dan kirim ke grup.</p></div></article>
-          </div>
-        </section>
+        <section class="how-section container" id="how-it-works" aria-labelledby="how-title"><div class="how-intro"><p class="eyebrow"><span class="eyebrow-line"></span> SIMPLE BY DESIGN</p><h2 id="how-title">Patungan yang<br /><em>nggak ribet.</em></h2></div><div class="how-steps"><article class="how-step"><span class="step-index">01</span><div><h3>Isi tagihan</h3><p>Masukkan nominal dan detail bill-mu.</p></div></article><article class="how-step"><span class="step-index">02</span><div><h3>Tambah teman</h3><p>Catat semua yang ikut makan atau jalan.</p></div></article><article class="how-step"><span class="step-index">03</span><div><h3>Bagikan hasil</h3><p>Salin ringkasan dan kirim ke grup.</p></div></article></div></section>
       </main>
 
-      <footer class="site-footer container">
-        <a class="brand footer-brand" href="#top"><span class="brand-mark">p</span><span>patungan<span class="brand-dot">.</span></span></a>
-        <p>Dibuat untuk pertemanan yang tetap akur setelah makan.</p>
-        <span class="footer-year">© 2026</span>
-      </footer>
+      <footer class="site-footer container"><a class="brand footer-brand" href="#top"><span class="brand-mark">p</span><span>patungan<span class="brand-dot">.</span></span></a><p>Dibuat untuk pertemanan yang tetap akur setelah makan.</p><span class="footer-year">© 2026</span></footer>
     </div>
+
     <div class="toast" id="toast" role="status" aria-live="polite">Ringkasan berhasil disalin.</div>
+    <div class="modal-backdrop" id="help-modal" aria-hidden="true"><section class="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title"><button class="modal-close" type="button" aria-label="Tutup bantuan">×</button><p class="eyebrow"><span class="eyebrow-line"></span> QUICK GUIDE</p><h2 id="help-title">Semua yang kamu<br /><em>butuhkan ada di sini.</em></h2><div class="modal-grid"><div><span class="modal-number">01</span><h3>Ubah vibe</h3><p>Pilih salah satu dari 12 tema. Setiap tema mengubah layout, tipografi, warna, bentuk, dan gerak.</p></div><div><span class="modal-number">02</span><h3>Atur suara</h3><p>Gunakan ikon gelombang suara untuk menyalakan atau mematikan feedback audio ringan.</p></div><div><span class="modal-number">03</span><h3>Mulai timer</h3><p>Timer sesi membantu mencatat berapa lama kamu menyiapkan pembagian tagihan.</p></div></div><button class="modal-action" id="modal-close-action" type="button">Oke, mengerti <span>→</span></button></section></div>
     <script src="script.js"></script>
   </body>
 </html>
