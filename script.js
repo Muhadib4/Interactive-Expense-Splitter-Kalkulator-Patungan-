@@ -222,7 +222,7 @@ function updateSummary() {
   });
 
   elements.settlementList.innerHTML = state.participants.map((person) => `
-    <div class="settlement-row"><span class="settlement-name"><span class="settlement-avatar">${initials(person.name)}</span>${escapeHtml(person.name.trim() || "Tanpa nama")}</span><strong class="settlement-amount">${formatRupiah(perPerson)}</strong></div>
+    <div class="settlement-row"><span class="settlement-name"><span class="settlement-avatar">${initials(person.name)}</span><span class="settlement-label">${escapeHtml(person.name.trim() || "Tanpa nama")}</span></span><strong class="settlement-amount">${formatRupiah(perPerson)}</strong></div>
   `).join("");
 }
 

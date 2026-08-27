@@ -453,3 +453,32 @@ html[data-mode="dark"] .hero-description, html[data-mode="dark"] .hero-points { 
 html[data-theme="cyberpunk"][data-mode="dark"] .art-card, html[data-theme="retro-terminal"][data-mode="dark"] .art-card { border-color:var(--accent); }
 html[data-theme="medieval"][data-mode="dark"] .site-header { border-bottom-color:var(--accent); }
 html[data-theme="celestial"][data-mode="dark"] .hero-art { filter:brightness(1.08); }
+
+/* Overflow guardrails: the participant DOM has four cells, so keep every value inside its card. */
+.calculator-layout > *, .input-card, .summary-panel, .participant-row, .settlement-row, .summary-receipt { min-width: 0; }
+.participant-row { grid-template-columns: 31px minmax(0, 1fr) minmax(0, max-content) 28px; }
+.participant-row input { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.participant-amount { min-width: 0; max-width: 10ch; overflow: hidden; color: var(--ink); font-size: 11px; font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+.receipt-title-row > :first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.receipt-status { flex: 0 0 auto; }
+.settlement-row { gap: 10px; }
+.settlement-name { min-width: 0; flex: 1 1 auto; overflow: hidden; }
+.settlement-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.settlement-amount { flex: 0 0 auto; max-width: 10ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.per-person-block strong { max-width: 100%; overflow: hidden; font-size: clamp(24px, 5vw, 36px); text-overflow: ellipsis; white-space: nowrap; }
+.summary-header h3 { min-width: 0; overflow-wrap: anywhere; }
+
+@media (max-width: 600px) {
+  .participant-row { grid-template-columns: 28px minmax(0, 1fr) minmax(0, 9ch) 24px; gap: 5px; padding-right: 5px; padding-left: 5px; }
+  .participant-avatar { width: 27px; height: 27px; }
+  .participant-row input { padding: 0 2px; font-size: 11px; }
+  .participant-amount { max-width: 9ch; font-size: 10px; }
+  .remove-participant { width: 22px; height: 22px; }
+  .receipt-title-row { align-items: flex-start; }
+  .receipt-line { gap: 10px; }
+  .receipt-line span, .receipt-line strong { min-width: 0; }
+  .receipt-line span { overflow-wrap: anywhere; }
+  .receipt-total strong { max-width: 58%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .settlement-row { gap: 7px; font-size: 10px; }
+  .settlement-amount { max-width: 9ch; font-size: 10px; }
+}
