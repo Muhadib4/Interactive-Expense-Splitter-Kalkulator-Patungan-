@@ -8,6 +8,8 @@ Kalkulator menghitung subtotal, biaya layanan, tip, total akhir, dan nominal per
 
 Aplikasi sekarang menyediakan 12 pilihan tema yang mengubah lebih dari sekadar warna: layout, bentuk kartu, ketebalan border, shadow, tipografi, spacing, tombol, navbar, timer, modal, dropdown, animasi, background, dan gaya ikon ikut menyesuaikan. Tema yang tersedia adalah Minimalism, Bento Grid, Maximalism, Neo-Brutalism, Liquid Glass, Cyberpunk, Retro Terminal, Frutiger Aero, Dark Fantasy, Medieval, Arcane, dan Celestial.
 
+Setiap tema memiliki pasangan **Light dan Dark yang dirancang khusus**, bukan satu dark mode global. Ketika mode diganti, palette background, surface, teks, border, shadow, summary panel, dan aksen akan menyesuaikan karakter tema yang sedang aktif. Contohnya, Cyberpunk Light memakai cyan gelap di atas permukaan biru pucat, sedangkan Cyberpunk Dark memakai navy hampir hitam dengan neon cyan-magenta; Medieval Light memakai parchment terang, sedangkan Medieval Dark memakai brown-black dengan aksen amber.
+
 Dark mode, light mode, timer sesi, modal quick guide, theme dropdown, toast feedback, hover states, serta sound effects menggunakan Web Audio API juga tersedia. SFX dapat dimatikan dari tombol gelombang suara di navbar. Preferensi tema, mode, dan suara tersimpan di browser melalui localStorage.
 
 ## Menjalankan project
